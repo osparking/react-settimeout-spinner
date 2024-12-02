@@ -1,23 +1,37 @@
 // Filename - App.js
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 
 const App = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState(null);
+  const [showWarning, setShowWarning] = useState(false);
+  const timerId = useRef(null);
 
   useEffect(() => {
-    setTimeout(() => {
-      setData("환. 범이비누 .영");
-      setIsLoading(false);
-    }, 1500);
-  }, []);
+    if (showWarning) {
+      //Creating a timeout
+      timerId.current = setTimeout(() => {
+        setShowWarning(false);
+      }, 1000);
+    }
 
-  if (isLoading) {
-    return <div className="spinner">Loading.....</div>;
-  } else {
-    return <div className="container">{data}</div>;
+    return () => {
+      // Clearing a timeout
+      clearTimeout(timerId.current);
+    };
+  }, [showWarning]);
+
+  function handleClick() {
+    setShowWarning(true);
   }
+
+  return (
+    <div className="warn">
+      {showWarning && <div className="warningMsg">This is a Warning !</div>}
+      <button className="btn" onClick={handleClick}>
+        Show Warning
+      </button>
+    </div>
+  );
 };
 export default App;
