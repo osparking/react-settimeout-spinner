@@ -1,3 +1,8 @@
+# setTimeout 및 clearTimeout 메소드 연습용 프로젝트
+npx 명령으로 생성된 프로젝트 
+학습한 자료 페이지: 
+- https://www.geeksforgeeks.org/using-settimeouts-in-react-components/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
